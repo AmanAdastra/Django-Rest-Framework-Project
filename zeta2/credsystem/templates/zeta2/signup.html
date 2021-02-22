@@ -1,0 +1,24 @@
+{% extends 'zeta2/base.html' %}
+
+{% block title %}Signup Form {% endblock title %}
+
+{% block content %} 
+    {% if messages %}
+        {% for msg in messages %}
+            {{msg}}        
+        {% endfor %}
+    {% endif %}
+    {% if form.non_field_errors %}
+        {% for error in form.non_field_erros %}
+            {{error}}
+        {% endfor %}
+    {% endif %}
+    <form action="" method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            {{field.label_tag}} {{field}} {{field.errors|striptags}} <br>
+        {% endfor %}
+        <input type="submit" value="Submit" class="btn btn-danger">
+    </form>
+
+{% endblock content %}
